@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter 2</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+        }
+
+        .counter-container {
+            background-color: rgb(0, 0, 0);
+            padding: 20px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .counter {
+            font-size: 80px;
+            font-weight: bold;
+            color: maroon;
+        }
+
+        .label {
+            font-size: 20px;
+            color: maroon;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="counter-container">
+        <div class="counter" id="counter2">0</div>
+        <div class="label">Death Toll 2</div>
+    </div>
+
+    <script>
+        function animateCounter(element, start, end, duration) {
+            let startTime = null;
+
+            function updateCounter(timestamp) {
+                if (!startTime) startTime = timestamp;
+                let progress = timestamp - startTime;
+                let current = Math.min(Math.floor(start + (end - start) * (progress / duration)), end);
+
+                element.innerText = current;
+
+                if (current < end) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            animateCounter(document.getElementById("counter2"), 0, 21822, 1000);
+        });
+    </script>
+
+</body>
+</html>
